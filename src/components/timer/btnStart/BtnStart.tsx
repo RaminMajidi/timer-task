@@ -5,7 +5,8 @@ import Swal from 'sweetalert2'
 
 const BtnStart = () => {
 
-    const { hour, minute, second } = useTimerStore();
+    const { hour, setHour, minute, setMinute, second, setSecond, startTimer, setStartTimer } = useTimerStore();
+
 
     const startTimeHandler = () => {
         if (!hour && !minute && !second) {
@@ -14,6 +15,20 @@ const BtnStart = () => {
                 title: "Oops...",
                 text: "Please fill in at least one of the fields.",
             });
+        } else {
+            setStartTimer(true);
+
+            for (let index = 60; index < Number(second); index--) {
+                setTimeout(() => {
+                    setSecond(Number(second) - 1 > 0 ? 59 : Number(second) - 1);
+                }, 1000);
+
+                for (let index = 59; index < Number(minute); index--) {
+                    setTimeout(() => {
+                        setMinute(Number(minute) - 1 > 0 ? 59 : Number(minute) - 1)
+                     }, 60000)
+                }
+            }
         }
     }
 
@@ -29,4 +44,4 @@ const BtnStart = () => {
     )
 }
 
-export default BtnStart
+export default BtnStart;

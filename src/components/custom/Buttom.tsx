@@ -3,15 +3,17 @@
 type TProps = {
     text: string;
     className: string;
-    isPending: boolean;
+    isPending?: boolean;
     type: "button" | "submit";
     onClickHandler: () => void;
+    disabled?:boolean;
 }
 
 const Buttom: React.FC<TProps> = ({
     className,
     onClickHandler,
-    isPending,
+    isPending=false,
+    disabled=false,
     text,
     type = "button",
     ...rest
@@ -21,7 +23,7 @@ const Buttom: React.FC<TProps> = ({
             onClick={onClickHandler}
             type={type}
             className={className}
-            disabled={isPending}
+            disabled={isPending || disabled}
             {...rest}
         >
             {
