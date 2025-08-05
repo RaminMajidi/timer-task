@@ -12,10 +12,12 @@ type TimerState = {
     setSecond: (second: number) => void;
     startTimer: boolean;
     setStartTimer: (value: boolean) => void;
+    reset: () => void;
 }
 
 export const useTimerStore = create<TimerState>()(devtools(
     (set, get) => ({
+        reset:()=>{set((state)=>({hour:null,minute:null,second:null,}))},
         showBtnStart: true,
         setShowBtnStart: (value) => { set((state) => ({ ...state, showBtnStart: value })) },
         hour: null,

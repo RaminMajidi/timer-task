@@ -1,13 +1,11 @@
 'use client';
 import Buttom from "@/components/custom/Buttom";
 import { useTimerStore } from "@/stores/TimerStore";
-import { useEffect } from "react";
 import Swal from 'sweetalert2'
 
 const BtnStart = () => {
 
-    const { hour, setHour, minute, setMinute, second, setSecond, startTimer, setStartTimer } = useTimerStore();
-
+    const { hour, minute, second, setStartTimer } = useTimerStore();
 
     const startTimeHandler = () => {
         if (!hour && !minute && !second) {
@@ -20,9 +18,6 @@ const BtnStart = () => {
             setStartTimer(true);
         }
     }
-
-
-
 
     return (
         <Buttom
