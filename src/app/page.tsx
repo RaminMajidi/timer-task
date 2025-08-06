@@ -7,7 +7,7 @@ import TopInputs from "@/components/timer/topInputs/Index";
 
 export default function Home() {
   return (
-    <section className="max-w-[800px] mx-auto">
+    <section className="max-w-[800px] mx-auto py-4">
       <TopInputs />
       <div className="flex justify-center items-center gap-2">
         <ShowTimer />

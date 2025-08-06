@@ -42,7 +42,6 @@ const TopInputs = () => {
                         value={second as number}
                         changeHandler={(e) => { setSecond(+e.target.value) }}
                     />
-                    <BtnStart />
                 </article>
             }
         </>
