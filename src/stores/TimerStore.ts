@@ -13,11 +13,13 @@ type TimerState = {
     startTimer: boolean;
     setStartTimer: (value: boolean) => void;
     reset: () => void;
+    lops: string[];
+    setLops: () => void;
 }
 
 export const useTimerStore = create<TimerState>()(devtools(
     (set, get) => ({
-        reset:()=>{set((state)=>({hour:null,minute:null,second:null,}))},
+        reset: () => { set((state) => ({ hour: null, minute: null, second: null, startTimer: false, lops: [] })) },
         showBtnStart: true,
         setShowBtnStart: (value) => { set((state) => ({ ...state, showBtnStart: value })) },
         hour: null,
@@ -27,5 +29,6 @@ export const useTimerStore = create<TimerState>()(devtools(
         setMinute: (minute) => { set((state) => ({ ...state, minute })) },
         setSecond: (second) => { set((state) => ({ ...state, second })) },
         startTimer: false,
-        setStartTimer: (value) => { set((state) => ({ ...state, startTimer: value })) }
+        setStartTimer: (value) => { set((state) => ({ ...state, startTimer: value })) },
+        setLops: () => { set((state) => ({ ...state, lops: [...state.lops, `${state.hour} : ${state.minute} : ${state.second}`] })) }
     })));

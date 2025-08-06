@@ -5,11 +5,15 @@ import { useEffect, useState } from 'react';
 
 const ShowTimer = () => {
     const [totlaTime, setTotalTime] = useState(0);
-    const { hour, setHour, minute, setMinute, second, setSecond, startTimer } = useTimerStore();
+    const { hour, setHour, minute, setMinute, second, setSecond, startTimer, setStartTimer } = useTimerStore();
 
     useEffect(() => {
         if (startTimer) {
             setTimeout(() => {
+                if (!hour && !minute && !second) {
+                    setStartTimer(false);
+                    return;
+                }
                 setSecond(Number(second) - 1 < 0 ? 59 : Number(second) - 1);
                 if (second === 0) {
                     if (Number(minute) - 1 < 0 && Number(hour) > 0) {
@@ -25,6 +29,8 @@ const ShowTimer = () => {
                             setHour(Number(hour) - 1);
                         }
                     }
+
+
                 }
 
                 setTotalTime(totlaTime + 1)
