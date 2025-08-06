@@ -8,6 +8,7 @@ const PauseTimer = () => {
 
   const pauseStatus = useTimerStore(state => state.pauseStatus);
   const setPauseCount = useTimerStore(state => state.setPauseCount);
+  const resetPasuseCount = useTimerStore(state=>state.resetPasuseCount)
   const pauseCount = useTimerStore(state => state.pauseCount);
   const setPauseLocalTime = useTimerStore(state=>state.setPauseLocalTime);
 
@@ -17,14 +18,14 @@ const PauseTimer = () => {
     if (pauseStatus) {
       console.log(count)
       countInterval = setInterval(() => {
+        setPauseCount()
         setCount(prev => prev + 1)
-        setPauseCount(count);
       }, 1000)
     }
 
     return () => {
       clearInterval(countInterval);
-      setPauseCount(0);
+      resetPasuseCount()
       setPauseLocalTime('')
       setCount(0)
     }

@@ -6,7 +6,8 @@ type TimerState = {
     pauseStatus: boolean;
     setPauseStatus: (value: boolean) => void;
     pauseCount: number;
-    setPauseCount: (pauseCount: number) => void;
+    setPauseCount: () => void;
+    resetPasuseCount: () => void;
     showBtnStart: boolean;
     setShowBtnStart: (value: boolean) => void;
     hour: number | null;
@@ -52,7 +53,8 @@ export const useTimerStore = create<TimerState>()(devtools(
         pauseStatus: false,
         setPauseStatus: (pauseStatus) => { set((state) => ({ ...state, pauseStatus })) },
         pauseCount: 0,
-        setPauseCount: (pauseCount) => { set((state) => ({ ...state, pauseCount })) },
+        setPauseCount: () => { set((state) => ({ ...state, pauseCount: state.pauseCount + 1 })) },
+        resetPasuseCount: () => { set((state) => ({ ...state, pauseCount: 0 })) },
         pauseLocalTime: "",
         setPauseLocalTime: (pauseLocalTime) => { set((state) => ({ ...state, pauseLocalTime })) }
     })));
