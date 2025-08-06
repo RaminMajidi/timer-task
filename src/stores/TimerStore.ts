@@ -25,11 +25,15 @@ type TimerState = {
     setClocks: () => void;
     pauseLocalTime: string;
     setPauseLocalTime: (pauseLocalTime: string) => void;
+    showInputs: boolean,
+    setShowInputs: (showInputs: boolean) => void,
 }
 
 export const useTimerStore = create<TimerState>()(devtools(
     (set, get) => ({
-        reset: () => { set(() => ({ hour: null, minute: null, second: null, startTimer: false, lops: [], clocks: [], pauseLocalTime: '', pauseCount: 0, pauseStatus: false })) },
+        showInputs: true,
+        setShowInputs: (showInputs) => { set((state) => ({ ...state, showInputs })) },
+        reset: () => { set(() => ({ hour: null, minute: null, second: null, startTimer: false, lops: [], clocks: [], pauseLocalTime: '', pauseCount: 0, pauseStatus: false ,showInputs:true})) },
         showBtnStart: true,
         setShowBtnStart: (value) => { set((state) => ({ ...state, showBtnStart: value })) },
         hour: null,

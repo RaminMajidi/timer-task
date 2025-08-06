@@ -8,8 +8,9 @@ const ShowTimer = () => {
     const { hour, setHour, minute, setMinute, second, setSecond, startTimer, setStartTimer } = useTimerStore();
 
     useEffect(() => {
+        let timer:ReturnType<typeof setTimeout>;;
         if (startTimer) {
-            setTimeout(() => {
+            timer = setTimeout(() => {
                 if (!hour && !minute && !second) {
                     setStartTimer(false);
                     return;
@@ -35,26 +36,34 @@ const ShowTimer = () => {
             }, 1000);
         }
 
+        return ()=>{
+            clearTimeout(timer)
+        }
+
     }, [startTimer, totlaTime])
 
     return (
-        <div className='flex flex-wrap gap-2 justify-center items-center my-4'>
-            <TimerItem
-                calssName=''
-                value={hour ? hour : 0}
-            />
-            {" : "}
-            <TimerItem
-                calssName=''
-                value={minute ? minute : 0}
-            />
-            {" : "}
-            <TimerItem
-                calssName=''
-                value={second ? second : 0}
-            />
+        <>
+            {startTimer ? (
+                <div className='flex flex-wrap gap-2 justify-center items-center my-4'>
+                    <TimerItem
+                        calssName=''
+                        value={hour ? hour : 0}
+                    />
+                    {" : "}
+                    <TimerItem
+                        calssName=''
+                        value={minute ? minute : 0}
+                    />
+                    {" : "}
+                    <TimerItem
+                        calssName=''
+                        value={second ? second : 0}
+                    />
 
-        </div>
+                </div>
+            ) : null}
+        </>
     )
 }
 

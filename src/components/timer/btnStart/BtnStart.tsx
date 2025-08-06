@@ -7,7 +7,7 @@ const BtnStart = () => {
 
     const { hour, minute, second, setStartTimer,
         pauseStatus, setPauseStatus, setClocks,
-        pauseLocalTime, pauseCount
+        pauseLocalTime, pauseCount, setShowInputs, showInputs
     } = useTimerStore();
 
     const startTimeHandler = () => {
@@ -23,6 +23,10 @@ const BtnStart = () => {
                 text: "Please fill in at least one of the fields.",
             });
         } else {
+            if (showInputs) {
+                setShowInputs(false)
+            }
+
             setStartTimer(true);
         }
     }
