@@ -38,7 +38,7 @@ const ShowTimer = () => {
     }, [startTimer, totlaTime])
 
     return (
-        <div className='flex flex-wrap gap-2 justify-center items-center my-4 mx-auto'>
+        <div className='flex flex-wrap gap-2 justify-center items-center my-4'>
             <TimerItem
                 calssName=''
                 value={hour ? hour : 0}

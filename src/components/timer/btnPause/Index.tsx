@@ -3,10 +3,11 @@ import Buttom from "@/components/custom/Buttom";
 import { useTimerStore } from "@/stores/TimerStore";
 
 const BtnPause = () => {
-    const { setStartTimer } = useTimerStore();
+    const { setStartTimer , setPauseStatus } = useTimerStore();
 
     const pauseTimerHandler = () => {
-        setStartTimer(false)
+        setStartTimer(false);
+        setPauseStatus(true);
     }
 
 

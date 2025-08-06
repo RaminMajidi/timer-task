@@ -1,6 +1,6 @@
 'use client';
+import NoItem from '@/components/custom/NoItem';
 import { useTimerStore } from '@/stores/TimerStore'
-import React from 'react'
 
 const LopList = () => {
     const lops = useTimerStore(state => state.lops);
@@ -9,7 +9,7 @@ const LopList = () => {
             <h6>LOOPS</h6>
             {lops?.length > 0 ? (
                 <ol>
-                    {lops.map((item, i) => (<li key={item}>
+                    {lops.map((item, i) => (<li key={item + "_" + i}>
                         {
                             i + 1
                         }
@@ -18,7 +18,7 @@ const LopList = () => {
                     </li>))}
                 </ol>
             ) : (
-                <p>No Item</p>
+                <NoItem />
             )}
 
         </div>

@@ -5,9 +5,17 @@ import Swal from 'sweetalert2'
 
 const BtnStart = () => {
 
-    const { hour, minute, second, setStartTimer } = useTimerStore();
+    const { hour, minute, second, setStartTimer,
+        pauseStatus, setPauseStatus, setClocks,
+        pauseLocalTime, pauseCount
+    } = useTimerStore();
 
     const startTimeHandler = () => {
+        if (pauseStatus) {
+            setClocks();
+            setPauseStatus(false);
+        }
+
         if (!hour && !minute && !second) {
             Swal.fire({
                 icon: "error",
