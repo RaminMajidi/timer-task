@@ -29,8 +29,6 @@ const ShowTimer = () => {
                             setHour(Number(hour) - 1);
                         }
                     }
-
-
                 }
 
                 setTotalTime(totlaTime + 1)

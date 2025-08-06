@@ -6,7 +6,7 @@ import TopInputs from "@/components/timer/topInputs/Index";
 
 export default function Home() {
   return (
-    <section>
+    <section className="max-w-[800px] mx-auto">
       <TopInputs />
       <ShowTimer />
       <BtnGroup />

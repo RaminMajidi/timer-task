@@ -30,5 +30,6 @@ export const useTimerStore = create<TimerState>()(devtools(
         setSecond: (second) => { set((state) => ({ ...state, second })) },
         startTimer: false,
         setStartTimer: (value) => { set((state) => ({ ...state, startTimer: value })) },
-        setLops: () => { set((state) => ({ ...state, lops: [...state.lops, `${state.hour} : ${state.minute} : ${state.second}`] })) }
+        lops: [],
+        setLops: () => { set((state) => ({ ...state, lops: [...state.lops, `${Number(state.hour) < 10 ? `0${state.hour}` : state.hour} : ${Number(state.minute) < 10 ? `0${state.minute}` : state.minute} : ${Number(state.second) < 10 ? `0${state.second}` : state.second}`] })) }
     })));
